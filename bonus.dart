@@ -1,8 +1,16 @@
-import 'dart:ffi';
 import 'dart:math';
 
+List<int> createList(int n, int max) {
+  List<int> numbersList = [];
+  Random random = Random();
+  for (var i = 0; i < n; i++) {
+    numbersList.add(random.nextInt(max));
+  }
+  return numbersList;
+}
+
 // Bonus Task 1
-int getBiggerNumber(int x, int y) {
+dynamic getBiggerNumber(int x, int y) {
   return max(x, y);
 }
 
@@ -54,26 +62,363 @@ List<String> getListOfChar(String text) {
   return text.split('');
 }
 
-// Bonus Task 8
-String getInfoOfStringListElement(List<Strings> stringList) {
+// Bonus Task 9
+String getInfoOfStringListElement(List<String> stringList) {
   String info = "";
-
+  for (var element in stringList) {
+    info = info + '"$element" -> ${element.length}, ';
+  }
   return info;
 }
 
-void main(){
-  print(getSumOfList([1,2,1,2]));
-  print(getSumOfList([25,25]));
-  print(getSumOfList([6,60,600]));
+// Bonus Task 10
+int getProduct(int x, int y) {
+  return x * y;
+}
 
-  print(checkIfStringContainsChar("e", "text"));
-  print(checkIfStringContainsChar("e", "otto"));
-  print(checkIfStringContainsChar("e", "Alle meine Entchen"));
+// Bonus Task 11
+dynamic changeSignOfNumber(dynamic x) {
+  return x * -1;
+}
 
+// Bonus Task 12
+int getMinimumFromList(List<int> numbers) {
+  return numbers.reduce((currentMax, element) => min(currentMax, element));
+}
+
+// Bonus Task 13
+Map<String, int> getWordLength(List<String> wordList) {
+  Map<String, int> wordLength = {};
+  for (var word in wordList) {
+    wordLength[word] = word.length;
+  }
+  return wordLength;
+}
+
+// Bonus Task 14
+double convertTemperature(double temperatur, bool inCelsius) {
+  if (inCelsius) {
+    return (temperatur * 9 / 5) + 32;
+  } else {
+    return (temperatur - 32) * 5 / 9;
+  }
+}
+
+// Bonus Task 15
+String connectElementsOfList(List<String> stringList) {
+  return stringList.reduce((resultString, element) => resultString + element);
+}
+
+// Bonus Task 16
+bool checkForPrimeNumber(int number) {
+  if (number <= 1 || number % 2 == 0) {
+    return false;
+  }
+  if (number == 2) {
+    return true;
+  }
+  for (var i = 3; i * i < number; i += 2) {
+    if (number % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// Bonus Task 17
+
+// Bonus Task 18
+String getTimeFromSecond(int inputSecond) {
+  int hours = inputSecond ~/ 3600;
+  int remainingSecondsAfterHours = inputSecond % 3600;
+  int minutes = remainingSecondsAfterHours ~/ 60;
+  int seconds = remainingSecondsAfterHours % 60;
+
+  return "$inputSecond Sekunden entsprechen $hours Stunden, $minutes Minuten und $seconds Sekunden.";
+}
+
+// Bonus Task 19
+
+// Bonus Task 20
+int multiplyWithoutOperator(int x, int y) {
+  int result = 0;
+  for (var i = x; i > 0; i--) {
+    result += y;
+  }
+  return result;
+}
+
+// Bonus Task 21
+List<String> getListOfWordsFromString(String text) {
+  List<String> wordList = [];
+  String tempWord = "";
+
+  for (var i = 0; i < text.length; i++) {
+    if (text[i] == " ") {
+      if (tempWord.isNotEmpty) {
+        wordList.add(tempWord);
+        tempWord = "";
+      }
+    } else {
+      tempWord += text[i];
+    }
+  }
+  if (tempWord.isNotEmpty) {
+    wordList.add(tempWord);
+  }
+  return wordList;
+}
+
+// Bonus Task 22
+bool checkPalindrom(String word) {
+  for (var i = 0, j = word.length - 1; i < word.length; i++, j--) {
+    if (word[i] != word[j]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+
+void main() {
+  // Bonus Task 1
+  print("\n// Bonus Task 1 ");
+  print("Die größere Zahl ist ${getBiggerNumber(10, 11)}");
+  print("Die größere Zahl ist ${getBiggerNumber(1, -1)}");
+  print("Die größere Zahl ist ${getBiggerNumber(25, 9)}");
+
+  // Bonus Task 2
+  print("\n// Bonus Task 2 ");
+  print("Die  Zahl ist gerade: ${checkIfEven(25)}");
+  print("Die  Zahl ist gerade: ${checkIfEven(2)}");
+  print("Die  Zahl ist gerade: ${checkIfEven(4)}");
+
+  // Bonus Task 3
+  print("\n// Bonus Task 3 ");
+  List<int> numbers = createList(10, 20);
+  print(
+    "Die Summe der Elemente in der Liste $numbers ist: ${getSumOfList(numbers)}",
+  );
+  print(
+    "Die Summe der Elemente in der Liste ${[1, 2, 3, 4, 5, 6, 7]} ist: ${getSumOfList([1, 2, 3, 4, 5, 6, 7])}",
+  );
+  print(
+    "Die Summe der Elemente in der Liste ${[10, 20, 30, 40, 50, 60, 70]} ist: ${getSumOfList([10, 20, 30, 40, 50, 60, 70])}",
+  );
+
+  // Bonus Task 4
+  print("\n// Bonus Task 4 ");
+  numbers = createList(10, 20);
+  print(
+    "Der Durchschnitt aller Elemente in der Liste $numbers ist: ${getAVGOfList(numbers)}",
+  );
+  print(
+    "Der Durchschnitt aller Elemente in der Liste ${[1, 2, 3, 4, 5, 6, 7]} ist: ${getAVGOfList([1, 2, 3, 4, 5, 6, 7])}",
+  );
+  print(
+    "Der Durchschnitt aller Elemente in der Liste ${[10, 20, 30, 40, 50, 60, 70]} ist: ${getAVGOfList([10, 20, 30, 40, 50, 60, 70])}",
+  );
+
+  // Bonus Task 5
+  print("\n// Bonus Task 5 ");
+  String char = "e", text = "Ich bin ein Text";
+  print(
+    'Der Buchstabe $char ist in dem String "$text" ${getAmountOfChar("e", "Ich bin ein Text")} mal vorhanden.',
+  );
+  char = "a";
+  text = "Alle meine Entchen";
+  print(
+    'Der Buchstabe $char ist in dem String "$text" ${getAmountOfChar("e", "otto")} mal vorhanden.',
+  );
+  char = "f";
+  text = "Alle meine Entchen";
+  print(
+    'Der Buchstabe $char ist in dem String "$text" ${getAmountOfChar("e", "Alle meine Entchen")} mal vorhanden.',
+  );
+
+  // Bonus Task 6
+  print("\n// Bonus Task 6 ");
+  char = "e";
+  text = "Ich bin ein Text";
+  print(
+    'Der Buchstabe $char ist in dem String "$text" vorhanden: ${checkIfStringContainsChar("e", "Ich bin ein Text")}',
+  );
+  char = "a";
+  text = "Alle meine Entchen";
+  print(
+    'Der Buchstabe $char ist in dem String "$text" vorhanden: ${checkIfStringContainsChar("e", "otto")}',
+  );
+  char = "f";
+  text = "Alle meine Entchen";
+  print(
+    'Der Buchstabe $char ist in dem String "$text" vorhanden: ${checkIfStringContainsChar("e", "Alle meine Entchen")}',
+  );
+
+  // Bonus Task 7
+  print("\n// Bonus Task 7 ");
   print(checkNumber(10));
   print(checkNumber(-5));
   print(checkNumber(0));
 
-  print(getListOfChar("text"));
-}
+  // Bonus Task 8
+  print("\n// Bonus Task 8 ");
+  text = "Hello World!!";
+  print(
+    "Der String $text sieht als Liste folgendermaßen aus: ${getListOfChar(text)}",
+  );
+  text = "42";
+  print(
+    "Der String $text sieht als Liste folgendermaßen aus: ${getListOfChar(text)}",
+  );
+  text = "Bonus Task 8";
+  print(
+    "Der String $text sieht als Liste folgendermaßen aus: ${getListOfChar(text)}",
+  );
 
+  // Bonus Task 9
+  print("\n// Bonus Task 9 ");
+  print(
+    getInfoOfStringListElement(["Otto", "Erik", "Wie ist das Wetter heute?"]),
+  );
+  print(getInfoOfStringListElement(["Hello World!!", "42", "Bonus Task 8"]));
+  print(
+    getInfoOfStringListElement([
+      "Das Wette ",
+      "ist",
+      "an diesem Tag",
+      "sehr amgenehm.",
+    ]),
+  );
+
+  // Bonus Task 10
+  print("/\n/ Bonus Task 10 ");
+  int x = 12;
+  int y = 12;
+  int z = 12;
+  print(
+    "Das Produkt der Zahlen $x, $y und $z ist: ${getProduct(getProduct(x, y), z)}",
+  );
+  x = 2;
+  y = 2;
+  z = 2;
+  print(
+    "Das Produkt der Zahlen $x, $y und $z ist: ${getProduct(getProduct(x, y), z)}",
+  );
+  x = 24;
+  y = 60;
+  z = 60;
+  print(
+    "Das Produkt der Zahlen $x, $y und $z ist: ${getProduct(getProduct(x, y), z)}",
+  );
+
+  // Bonus Task 11
+  print("/\n/ Bonus Task 11 ");
+  x = 12;
+  print("Die Zahl $x mit umgedrehten Vorzeichen ist: ${changeSignOfNumber(x)}");
+  x = 2;
+  print("Die Zahl $x mit umgedrehten Vorzeichen ist: ${changeSignOfNumber(x)}");
+  x = 24;
+  print("Die Zahl $x mit umgedrehten Vorzeichen ist: ${changeSignOfNumber(x)}");
+
+  // Bonus Task 12
+  print("\n// Bonus Task 12 ");
+  numbers = createList(10, 20);
+  print(
+    "Die kleinste Zahl der Liste $numbers ist: ${getMinimumFromList(numbers)}",
+  );
+  print(
+    "Die kleinste Zahl der Liste ${[1, 2, 3, 4, 5, 6, 7]} ist: ${getMinimumFromList([1, 2, 3, 4, 5, 6, 7])}",
+  );
+  print(
+    "Die kleinste Zahl der Liste ${[10, 20, 30, 40, 50, 60, 70]} ist: ${getMinimumFromList([10, 20, 30, 40, 50, 60, 70])}",
+  );
+
+  // Bonus Task 13
+  print("\n// Bonus Task 13 ");
+  List<String> words = ["Apfel", "Banane", "Kirsche", "Dattel"];
+  print(
+    "Die Länge der Wörter in der Liste $words ist: ${getWordLength(words)}",
+  );
+  words = ["Hallo", "Welt", "Dart"];
+  print(
+    "Die Länge der Wörter in der Liste $words ist: ${getWordLength(words)}",
+  );
+  words = ["Ein", "Zwei", "Drei", "Vier"];
+  print(
+    "Die Länge der Wörter in der Liste $words ist: ${getWordLength(words)}",
+  );
+
+  // Bonus Task 14
+  print("\n// Bonus Task 14 ");
+  double temperature = 100.0;
+  bool inCelsius = true;
+  print(
+    "Die Temperatur $temperature in Celsius ist in Fahrenheit: ${convertTemperature(temperature, inCelsius)}",
+  );
+  temperature = 32.0;
+  inCelsius = false;
+  print(
+    "Die Temperatur $temperature in Fahrenheit ist in Celsius: ${convertTemperature(temperature, inCelsius)}",
+  );
+  temperature = 0.0;
+  inCelsius = true;
+  print(
+    "Die Temperatur $temperature in Celsius ist in Fahrenheit: ${convertTemperature(temperature, inCelsius)}",
+  );
+
+  // Bonus Task 15
+  print("\n// Bonus Task 15 ");
+  words = ["Otto", "Erik", "Wie ist das Wetter heute?"];
+  print(
+    "Die Strings der Liste $words ergeben zusammegefügt: ${connectElementsOfList(words)}",
+  );
+  words = ["Hello World!!", "42", "Bonus Task 8"];
+  print(
+    "Die Strings der Liste $words ergeben zusammegefügt: ${connectElementsOfList(words)}",
+  );
+  words = ["Das Wette ", "ist", "an diesem Tag", "sehr amgenehm."];
+  print(
+    "Die Strings der Liste $words ergeben zusammegefügt: ${connectElementsOfList(words)}",
+  );
+
+  // Bonus Task 16
+  print("\n// Bonus Task 16 ");
+  print('Ist 17 eine Primzahl? ${checkForPrimeNumber(17)}');
+  print('Ist 25 eine Primzahl? ${checkForPrimeNumber(25)}');
+  print('Ist 29 eine Primzahl? ${checkForPrimeNumber(29)}');
+
+  // Bonus Task 17
+  print("\n// Bonus Task 17 ");
+
+  // Bonus Task 18
+  print("\n// Bonus Task 18 ");
+  int seconds = 3661;
+  print("${getTimeFromSecond(seconds)}");
+  seconds = 3661;
+  print("${getTimeFromSecond(seconds)}");
+  seconds = 3661;
+  print("${getTimeFromSecond(seconds)}");
+
+  // Bonus Task 19
+  print("\n// Bonus Task 19 ");
+
+  // Bonus Task 20
+  print("\n// Bonus Task 20 ");
+  print(multiplyWithoutOperator(10, 10));
+  print(multiplyWithoutOperator(12, 2));
+  print(multiplyWithoutOperator(6, 4));
+
+  // Bonus Task 21
+  print("\n// Bonus Task 21 ");
+  print(getListOfWordsFromString("Die Nacht ist dunkel und voller Schrecken."));
+  print(
+    getListOfWordsFromString("Sein oder nicht sein das ist hier die Frage."),
+  );
+  print(getListOfWordsFromString("Ein Bett im Kornfeld das ist immer frei."));
+
+  // Bonus Task 21
+  print("\n// Bonus Task 21 ");
+
+
+  
+}
