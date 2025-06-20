@@ -129,7 +129,7 @@ bool checkForPrimeNumber(int number) {
 int reverseInteger(int x) {
   int reversedInteger = 0;
   int temp = 0;
-  for (int i = x; i > 0; i~/=10) {
+  for (int i = x; i > 0; i ~/= 10) {
     reversedInteger *= 10;
     temp = i % 10;
     reversedInteger += temp;
@@ -143,11 +143,28 @@ String getTimeFromSecond(int inputSecond) {
   int remainingSecondsAfterHours = inputSecond % 3600;
   int minutes = remainingSecondsAfterHours ~/ 60;
   int seconds = remainingSecondsAfterHours % 60;
-
   return "$inputSecond Sekunden entsprechen $hours Stunden, $minutes Minuten und $seconds Sekunden.";
 }
 
 // Bonus Task 19
+bool checkAnagram(String a, String b) {
+  if (a.length != b.length) {
+    return false;
+  }
+  bool isAnagram = true;
+  a = a.toLowerCase();
+  b = b.toLowerCase();
+  for (var i = 0; i < a.length; i++) {
+    if (b.contains(a[i])) {
+      int indexOfLetter = b.indexOf(a[i]);
+      b = b.substring(0, indexOfLetter) + b.substring(indexOfLetter + 1);
+    } else {
+      isAnagram = false;
+    }
+  }
+  
+  return isAnagram;
+}
 
 // Bonus Task 20
 int multiplyWithoutOperator(int x, int y) {
@@ -189,6 +206,23 @@ bool checkPalindrom(String word) {
   return true;
 }
 
+// Bonus Task 23
+bool checkBrackets(String expression) {
+  int counter = 0;
+  for (var i = 0; i < expression.length; i++) {
+    if (expression[i] == "(") {
+      counter++;
+    }
+    if (expression[i] == ")") {
+      counter--;
+    }
+  }
+  print(counter);
+  if (counter == 0) {
+    return true;
+  }
+  return false;
+}
 
 void main() {
   // Bonus Task 1
@@ -417,24 +451,44 @@ void main() {
 
   // Bonus Task 19
   print("\n// Bonus Task 19 ");
+  String a = "Atlas";
+  String b = "Salat";
+  print("Der String $a ist ein Anagramm von $b: ${checkAnagram(a, b)}");
+  b = "Salsa";
+  print("Der String $a ist ein Anagramm von $b: ${checkAnagram(a, b)}");
+  b = "Salsabar";
+  print("Der String $a ist ein Anagramm von $b: ${checkAnagram(a, b)}");
 
-  // // Bonus Task 20
-  // print("\n// Bonus Task 20 ");
-  // print(multiplyWithoutOperator(10, 10));
-  // print(multiplyWithoutOperator(12, 2));
-  // print(multiplyWithoutOperator(6, 4));
+  // Bonus Task 20
+  print("\n// Bonus Task 20 ");
+  print(multiplyWithoutOperator(10, 10));
+  print(multiplyWithoutOperator(12, 2));
+  print(multiplyWithoutOperator(6, 4));
 
-  // // Bonus Task 21
-  // print("\n// Bonus Task 21 ");
-  // print(getListOfWordsFromString("Die Nacht ist dunkel und voller Schrecken."));
-  // print(
-  //   getListOfWordsFromString("Sein oder nicht sein das ist hier die Frage."),
-  // );
-  // print(getListOfWordsFromString("Ein Bett im Kornfeld das ist immer frei."));
+  // Bonus Task 21
+  print("\n// Bonus Task 21 ");
+  print(getListOfWordsFromString("Die Nacht ist dunkel und voller Schrecken."));
+  print(
+    getListOfWordsFromString("Sein oder nicht sein das ist hier die Frage."),
+  );
+  print(getListOfWordsFromString("Ein Bett im Kornfeld das ist immer frei."));
 
-  // // Bonus Task 21
-  // print("\n// Bonus Task 21 ");
+  // Bonus Task 22
+  print("\n// Bonus Task 22 ");
+  String word = "otto";
+  print("Der String $word ist ein Palimdrom: ${checkPalindrom(word)}");
+  word = "Lagerregal";
+  print("Der String $word ist ein Palimdrom: ${checkPalindrom(word)}");
+  word = "Test";
+  print("Der String $word ist ein Palimdrom: ${checkPalindrom(word)}");
 
-
+  // Bonus Task 23
+  print("\n// Bonus Task 23 ");
+  String expression = "(a + b) * ((c + d) * e)";
+  print("Die Klammern des Ausdrucks sind in Ordnung: ${checkBrackets(expression)}");
+  expression = "(a + b)² = a² + 2ab + b²";
+print("Die Klammern des Ausdrucks sind in Ordnung: ${checkBrackets(expression)}");
+  expression = "(())(";
+print("Die Klammern des Ausdrucks sind in Ordnung: ${checkBrackets(expression)}");
 
 }
