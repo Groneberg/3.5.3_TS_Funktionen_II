@@ -10,7 +10,7 @@ List<int> createList(int n, int max) {
 }
 
 // Bonus Task 1
-dynamic getBiggerNumber(int x, int y) {
+int getBiggerNumber(int x, int y) {
   return max(x, y);
 }
 
@@ -78,12 +78,12 @@ int getProduct(int x, int y) {
 
 // Bonus Task 11
 dynamic changeSignOfNumber(dynamic x) {
-  return x * -1;
+  return x * -1; // return -x; get auch
 }
 
 // Bonus Task 12
 int getMinimumFromList(List<int> numbers) {
-  return numbers.reduce((currentMax, element) => min(currentMax, element));
+  return numbers.reduce((currentMin, element) => min(currentMin, element));
 }
 
 // Bonus Task 13
@@ -126,6 +126,16 @@ bool checkForPrimeNumber(int number) {
 }
 
 // Bonus Task 17
+int reverseInteger(int x) {
+  int reversedInteger = 0;
+  int temp = 0;
+  for (int i = x; i > 0; i~/=10) {
+    reversedInteger *= 10;
+    temp = i % 10;
+    reversedInteger += temp;
+  }
+  return reversedInteger;
+}
 
 // Bonus Task 18
 String getTimeFromSecond(int inputSecond) {
@@ -389,6 +399,12 @@ void main() {
 
   // Bonus Task 17
   print("\n// Bonus Task 17 ");
+  x = 4567;
+  print("Die Zahl $x umgedreht lautet: ${reverseInteger(x)}");
+  x = 123456789;
+  print("Die Zahl $x umgedreht lautet: ${reverseInteger(x)}");
+  x = 545;
+  print("Die Zahl $x umgedreht lautet: ${reverseInteger(x)}");
 
   // Bonus Task 18
   print("\n// Bonus Task 18 ");
@@ -402,23 +418,23 @@ void main() {
   // Bonus Task 19
   print("\n// Bonus Task 19 ");
 
-  // Bonus Task 20
-  print("\n// Bonus Task 20 ");
-  print(multiplyWithoutOperator(10, 10));
-  print(multiplyWithoutOperator(12, 2));
-  print(multiplyWithoutOperator(6, 4));
+  // // Bonus Task 20
+  // print("\n// Bonus Task 20 ");
+  // print(multiplyWithoutOperator(10, 10));
+  // print(multiplyWithoutOperator(12, 2));
+  // print(multiplyWithoutOperator(6, 4));
 
-  // Bonus Task 21
-  print("\n// Bonus Task 21 ");
-  print(getListOfWordsFromString("Die Nacht ist dunkel und voller Schrecken."));
-  print(
-    getListOfWordsFromString("Sein oder nicht sein das ist hier die Frage."),
-  );
-  print(getListOfWordsFromString("Ein Bett im Kornfeld das ist immer frei."));
+  // // Bonus Task 21
+  // print("\n// Bonus Task 21 ");
+  // print(getListOfWordsFromString("Die Nacht ist dunkel und voller Schrecken."));
+  // print(
+  //   getListOfWordsFromString("Sein oder nicht sein das ist hier die Frage."),
+  // );
+  // print(getListOfWordsFromString("Ein Bett im Kornfeld das ist immer frei."));
 
-  // Bonus Task 21
-  print("\n// Bonus Task 21 ");
+  // // Bonus Task 21
+  // print("\n// Bonus Task 21 ");
 
 
-  
+
 }
