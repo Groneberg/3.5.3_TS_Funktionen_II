@@ -162,7 +162,7 @@ bool checkAnagram(String a, String b) {
       isAnagram = false;
     }
   }
-  
+
   return isAnagram;
 }
 
@@ -485,10 +485,15 @@ void main() {
   // Bonus Task 23
   print("\n// Bonus Task 23 ");
   String expression = "(a + b) * ((c + d) * e)";
-  print("Die Klammern des Ausdrucks sind in Ordnung: ${checkBrackets(expression)}");
+  print(
+    "Die Klammern des Ausdrucks sind in Ordnung: ${checkBrackets(expression)}",
+  );
   expression = "(a + b)² = a² + 2ab + b²";
-print("Die Klammern des Ausdrucks sind in Ordnung: ${checkBrackets(expression)}");
+  print(
+    "Die Klammern des Ausdrucks sind in Ordnung: ${checkBrackets(expression)}",
+  );
   expression = "(())(";
-print("Die Klammern des Ausdrucks sind in Ordnung: ${checkBrackets(expression)}");
-
+  print(
+    "Die Klammern des Ausdrucks sind in Ordnung: ${checkBrackets(expression)}",
+  );
 }
